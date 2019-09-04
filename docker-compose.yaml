@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+
+  postgis:
+    image: jhenck57/arc_gis:postgressql
+    #build: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    hostname: postgresql
+    ports:
+      - 5432:5432
+    volumes:
+      db-data:
+  qgis:
+    image: qgis/qgis:release-3_4_cosmic
+    links: postgis
+
+volumes:
+    db-data:
