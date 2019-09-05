@@ -19,6 +19,9 @@ services:
       - postgis
     ports:
       - 7999:80
+    volumes:
+      - qgis:/gis
 
 volumes:
     pdb-data:
+    qgis:
