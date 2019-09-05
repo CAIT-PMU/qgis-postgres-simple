@@ -17,6 +17,8 @@ services:
     image: qgis/qgis:release-3_4_cosmic
     links:
       - postgis
+    ports:
+      - 7999:80
 
 volumes:
     pdb-data:
