@@ -16,7 +16,8 @@ services:
       db-data:
   qgis:
     image: qgis/qgis:release-3_4_cosmic
-    links: postgis
+    links:
+      - postgis
 
 volumes:
     db-data:
