@@ -23,7 +23,26 @@ services:
       - 7999:80
     volumes:
       - qgis:/gis
+    networks:
+      - qgis-net
 
+  nginx:
+    build: ./nginx
+    image: nginx:test1
+    container_name: proxy
+    ports:
+      - 7998:80
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - /etc/nginx/vhost.d
+      #- ./nginx-registry-docker/nginx/:/etc/nginx/conf.d:ro
+    networks:
+      - qgis-net
+
+networks:
+    qgis-net:
+        driver: overlay
+        
 volumes:
     pdb-data:
     qgis:
