@@ -1,0 +1,1 @@
+FROM geographica/postgis:dev_diplodocus
