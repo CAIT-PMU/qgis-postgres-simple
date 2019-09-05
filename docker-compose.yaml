@@ -3,8 +3,8 @@ version: '3'
 services:
 
   postgis:
-    build: postgres
-    image: jhenck57/arc_gis:postgressql
+    build: postgis
+    image: jhenck57/arc_gis:postgis
     environment:
       - POSTGRES_PASSWD=postgres
       - ENV PG_HBA "local all all trust#host all all 127.0.0.1/32 trust#host all all 0.0.0.0/0 md5#host all all ::1/128 trust"
@@ -19,6 +19,8 @@ services:
       - postgis
     environment:
       - WORKDIR=WORKDIR
+      VIRTUAL_HOST: qgis-server.local
+      VIRTUAL_PORT: 7999
     ports:
       - 7999:80
     volumes:
@@ -38,11 +40,13 @@ services:
       #- ./nginx-registry-docker/nginx/:/etc/nginx/conf.d:ro
     networks:
       - qgis-net
+    links:
+      - qgis
 
 networks:
     qgis-net:
         driver: overlay
-        
+
 volumes:
     pdb-data:
     qgis:
