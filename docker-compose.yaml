@@ -18,7 +18,7 @@ services:
     links:
       - postgis
     environment:
-      - WORKDIR=WORKDIR
+      #- WORKDIR=WORKDIR
       VIRTUAL_HOST: qgis-server.local
       VIRTUAL_PORT: 7999
     ports:
