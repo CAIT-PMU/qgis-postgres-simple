@@ -13,11 +13,11 @@ services:
     ports:
       - 5432:5432
     volumes:
-      db-data:
+      - pdb-data:/var/lib/postgresql/data
   qgis:
     image: qgis/qgis:release-3_4_cosmic
     links:
       - postgis
 
 volumes:
-    db-data:
+    pdb-data:
